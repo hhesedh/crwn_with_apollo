@@ -8,7 +8,7 @@ export const typeDefs = gql`
 
 const GET_CART_HIDDEN = gql`
   {
-    ToggleCartHidden @client
+    cartHidden @client
   }
 
 `
@@ -16,16 +16,16 @@ const GET_CART_HIDDEN = gql`
 export const resolvers = {
   Mutation: {
     toggleCartHidden: (_root, _args, { cache }) => {
-      const { cartHiden } = cache.readQuery({
+      const { cartHidden } = cache.readQuery({
         query: GET_CART_HIDDEN
       });
 
       cache.writeQuery({
         query: GET_CART_HIDDEN,
-        data: { cartHiden: !cartHiden }
+        data: { cartHidden: !cartHidden }
       });
 
-      return  !cartHiden;
+      return  !cartHidden;
     }
   }
 };
